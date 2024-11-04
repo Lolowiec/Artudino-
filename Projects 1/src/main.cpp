@@ -18,50 +18,50 @@ int lastValue = Value;
 
 void setup()
 {
-  Serial.begin(115200);
-  Wire.begin();
+    Serial.begin(115200);
+    Wire.begin();
 
-  pinMode(buttonPin1, INPUT_PULLUP);
-  pinMode(buttonPin2, INPUT_PULLUP);
+    pinMode(buttonPin1, INPUT_PULLUP);
+    pinMode(buttonPin2, INPUT_PULLUP);
 }
 
 void loop()
 {
-  // Obsługa przycisków
-  buttonState1 = digitalRead(buttonPin1);
-  if (buttonState1 != lastButtonState1)
-  {
-    if (buttonState1 == LOW)
+    // Obsługa przycisków
+    buttonState1 = digitalRead(buttonPin1);
+    if (buttonState1 != lastButtonState1)
     {
-      Value += 1;
-      if (Value > 10)
-      {
-        Value = 10;
-      }
+        if (buttonState1 == LOW)
+        {
+            Value += 1;
+            if (Value > 10)
+            {
+                Value = 10;
+            }
+        }
+        lastButtonState1 = buttonState1;
     }
-    lastButtonState1 = buttonState1;
-  }
 
-  buttonState2 = digitalRead(buttonPin2);
-  if (buttonState2 != lastButtonState2)
-  {
-    if (buttonState2 == LOW)
+    buttonState2 = digitalRead(buttonPin2);
+    if (buttonState2 != lastButtonState2)
     {
-      Value -= 1;
-      if (Value < 3)
-      {
-        Value = 3;
-      }
+        if (buttonState2 == LOW)
+        {
+            Value -= 1;
+            if (Value < 3)
+            {
+                Value = 3;
+            }
+        }
+        lastButtonState2 = buttonState2;
     }
-    lastButtonState2 = buttonState2;
-  }
 
-  // Wyświetlanie Value na konsoli
-  if (Value != lastValue)
-  {
-    Serial.println(Value);
-    lastValue = Value;
-  }
+    // Wyświetlanie Value na konsoli
+    if (Value != lastValue)
+    {
+        Serial.println(Value);
+        lastValue = Value;
+    }
 
-  delay(50);
+    delay(50);
 }
